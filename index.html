@@ -1505,3 +1505,49 @@
   </script>
 </body>
 </html>
+@media print {
+
+  /* 1) 브라우저 기본 마진 제거 */
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  /* 2) 전체 페이지 여백 제거 */
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3) 실제 출력 영역을 종이 네 모서리에 딱 맞추기 */
+  .page {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+
+    /* 인쇄 가능한 안전 영역 확보 (중요!)
+       아래 패딩값은 원하는대로 조절 가능
+       너무 0으로 하면 프린터마다 잘림 발생 */
+    padding: 10mm 12mm !important; 
+  }
+
+  /* 4) 버튼 등 인쇄 불필요 항목 제거 */
+  .no-print {
+    display: none !important;
+  }
+
+  /* 5) 모든 페이지 섹션 다 보이기 */
+  .page-section {
+    display: block !important;
+    page-break-before: auto;
+    page-break-after: auto;
+  }
+}
