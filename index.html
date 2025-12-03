@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Personal Injury Questionnaire | Law Office of Hong-min Jun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --border: #d1d5db;
+      --text: #111827;
+      --accent: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 24px auto;
+      padding: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 24px 20px 32px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: -8px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    .section-description {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px 16px;
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .inline {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .inline label {
+      margin-bottom: 0;
+    }
+
+    .table-like {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    .table-like th,
+    .table-like td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      font-size: 0.85rem;
+      vertical-align: top;
+    }
+
+    .table-like th {
+      background: #e5e7eb;
+      text-align: left;
+    }
+
+    .buttons {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: none;
+      border-radius: 9999px;
+      padding: 8px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    button[type="submit"] {
+      background: var(--accent);
+      color: white;
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .no-print {
+      /* elements hidden when printing */
+    }
+
+    /* 페이지 네비게이션 */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      gap: 8px;
+    }
+
+    .page-indicator {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .lang-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* 언어 토글 - 텍스트 표시 제어 */
+    .lang-en,
+    .lang-ko,
+    .lang-zh {
+      display: none;
+    }
+
+    html[data-lang="en"] .lang-en {
+      display: inline;
+    }
+
+    html[data-lang="ko"] .lang-ko {
+      display: inline;
+    }
+
+    html[data-lang="zh"] .lang-zh {
+      display: inline;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LETTER 용 인쇄 최적화 */
+    @page {
+      size: Letter;
+      margin: 0.75in;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page {
+        max-width: none;   /* 가로 여백 없이 Letter 폭에 맞춤 */
+        margin: 0;
+        padding: 0;
+      }
+      .card {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;        /* 페이지 마진과 바로 맞닿도록 */
+      }
+      .no-print {
+        display: none !important;
+      }
+      /* 인쇄 시에는 모든 페이지 섹션을 보이게 */
+      .page-section {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <!-- NIW 스타일 헤더 -->
+      <div style="text-align:center; margin-bottom: 8px;">
+        <div style="font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em;">
+          LAW OFFICE OF HONG-MIN JUN
+        </div>
+        <div style="font-size: 0.8rem; color:#4b5563; margin-top:4px; text-transform: uppercase;">
+          ATTORNEYS FOR FOREIGN-BORN INDIVIDUALS & SMALL BUSINESS OWNERS
+        </div>
+      </div>
+
+      <h1>
+        <span class="lang-en">Personal Injury Questionnaire</span>
+        <span class="lang-ko">개인 상해 사고 질문서</span>
+        <span class="lang-zh">人身伤害问卷</span>
+      </h1>
+
+      <!-- 언어 토글 버튼 -->
+      <div class="lang-toggle no-print">
+        <button type="button" class="lang-btn active" data-lang-select="en">
+          EN
+        </button>
+        <button type="button" class="lang-btn" data-lang-select="ko">
+          한국어
+        </button>
+        <button type="button" class="lang-btn" data-lang-select="zh">
+          中文
+        </button>
+      </div>
+
+      <!-- 메인 폼 -->
+      <form
+        id="piForm"
+        action="https://formsubmit.co/askus@junlawfirm.com"
+        method="POST"
+      >
+        <!-- PAGE 1 -->
+        <div class="page-section active" data-page="1">
+          <!-- 1. Client Information -->
+          <h2>
+            <span class="lang-en">Client Information</span>
+            <span class="lang-ko">의뢰인 정보</span>
+            <span class="lang-zh">当事人基本信息</span>
+          </h2>
+          <div class="section-description">
+            <span class="lang-en">Please complete all fields as accurately as possible.</span>
+            <span class="lang-ko">가능한 한 정확하게 모든 항목을 작성해 주십시오.</span>
+            <span class="lang-zh">请尽量准确填写以下各项信息。</span>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="full_name">
+                <span class="lang-en">Full Name</span>
+                <span class="lang-ko">성명</span>
+                <span class="lang-zh">姓名</span>
+              </label>
+              <input type="text" id="full_name" name="Full Name" />
+            </div>
+            <div class="field">
+              <label for="dob">
+                <span class="lang-en">Date of Birth</span>
+                <span class="lang-ko">생년월일</span>
+                <span class="lang-zh">出生日期</span>
+              </label>
+              <input type="date" id="dob" name="Date of Birth" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="mailing_address">
+              <span class="lang-en">Mailing Address</span>
+              <span class="lang-ko">우편 수령 주소</span>
+              <span class="lang-zh">邮寄地址</span>
+            </label>
+            <input
+              type="text"
+              id="mailing_address"
+              name="Mailing Address"
+            />
+          </div>
+
+          <div class="grid-3">
+            <div class="field">
+              <label for="tel">
+                <span class="lang-en">Telephone No.</span>
+                <span class="lang-ko">자택 전화</span>
+                <span class="lang-zh">电话号码</span>
+              </label>
+              <input type="tel" id="tel" name="Telephone No." />
+            </div>
+            <div class="field">
+              <label for="cell">
+                <span class="lang-en">Cell No.</span>
+                <span class="lang-ko">휴대전화</span>
+                <span class="lang-zh">手机号码</span>
+              </label>
+              <input type="tel" id="cell" name="Cell No." />
+            </div>
+            <div class="field">
+              <label for="work_no">
+                <span class="lang-en">Work No.</span>
+                <span class="lang-ko">직장 전화</span>
+                <span class="lang-zh">工作电话</span>
+              </label>
+              <input type="tel" id="work_no" name="Work No." />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">
+              <span class="lang-en">Email Address</span>
+              <span class="lang-ko">이메일 주소</span>
+              <span class="lang-zh">电子邮箱</span>
+            </label>
+            <input type="email" id="email" name="Email Address" />
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="ssn">
+                <span class="lang-en">Social Security No.</span>
+                <span class="lang-ko">사회보장번호(SSN)</span>
+                <span class="lang-zh">社会安全号（SSN）</span>
+              </label>
+              <input type="text" id="ssn" name="Social Security No." />
+            </div>
+            <div class="field">
+              <label for="emergency_contact">
+                <span class="lang-en">Emergency Contact (Name)</span>
+                <span class="lang-ko">비상연락인 성명</span>
+                <span class="lang-zh">紧急联系人姓名</span>
+              </label>
+              <input
+                type="text"
+                id="emergency_contact"
+                name="Emergency Contact Name"
+              />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="emergency_phone">
+                <span class="lang-en">Emergency Contact Phone</span>
+                <span class="lang-ko">비상연락인 전화번호</span>
+                <span class="lang-zh">紧急联系人电话</span>
+              </label>
+              <input
+                type="tel"
+                id="emergency_phone"
+                name="Emergency Contact Phone"
+              />
+            </div>
+            <div class="field">
+              <label for="emergency_address">
+                <span class="lang-en">Emergency Contact Mailing Address</span>
+                <span class="lang-ko">비상연락인 주소</span>
+                <span class="lang-zh">紧急联系人地址</span>
+              </label>
+              <input
+                type="text"
+                id="emergency_address"
+                name="Emergency Contact Mailing Address"
+              />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="spouse_name">
+                <span class="lang-en">Spouse’s Name</span>
+                <span class="lang-ko">배우자 성명</span>
+                <span class="lang-zh">配偶姓名</span>
+              </label>
+              <input type="text" id="spouse_name" name="Spouse’s Name" />
+            </div>
+            <div class="field">
+              <label for="marriage_date">
+                <span class="lang-en">Date of Marriage</span>
+                <span class="lang-ko">결혼일자</span>
+                <span class="lang-zh">结婚日期</span>
+              </label>
+              <input type="date" id="marriage_date" name="Date of Marriage" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="children">
+              <span class="lang-en">Children (Names & Ages)</span>
+              <span class="lang-ko">자녀 (이름 및 나이)</span>
+              <span class="lang-zh">子女（姓名及年龄）</span>
+            </label>
+            <textarea id="children" name="Children (Names & Ages)"></textarea>
+          </div>
+
+          <!-- 2. Facts of Incident -->
+          <h2>
+            <span class="lang-en">Facts of Incident</span>
+            <span class="lang-ko">사고 개요</span>
+            <span class="lang-zh">事故经过</span>
+          </h2>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="incident_date">
+                <span class="lang-en">Date of Incident</span>
+                <span class="lang-ko">사고 일자</span>
+                <span class="lang-zh">事故日期</span>
+              </label>
+              <input type="date" id="incident_date" name="Date of Incident" />
+            </div>
+            <div class="field">
+              <label for="incident_time">
+                <span class="lang-en">Time of Incident</span>
+                <span class="lang-ko">사고 시간</span>
+                <span class="lang-zh">事故时间</span>
+              </label>
+              <input type="text" id="incident_time" name="Time of Incident" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="incident_place">
+              <span class="lang-en">Place of Incident</span>
+              <span class="lang-ko">사고 장소</span>
+              <span class="lang-zh">事故地点</span>
+            </label>
+            <input type="text" id="incident_place" name="Place of Incident" />
+          </div>
+
+          <div class="field">
+            <label for="incident_description">
+              <span class="lang-en">Description of Incident</span>
+              <span class="lang-ko">사고 경위 설명</span>
+              <span class="lang-zh">事故过程说明</span>
+            </label>
+            <textarea
+              id="incident_description"
+              name="Description of Incident"
+            ></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label>
+                <span class="lang-en">Photographs?</span>
+                <span class="lang-ko">사고 관련 사진 유무</span>
+                <span class="lang-zh">是否有事故照片？</span>
+              </label>
+              <div class="inline">
+                <label>
+                  <input type="radio" name="Photographs" value="Yes" />
+                  <span class="lang-en">Yes</span>
+                  <span class="lang-ko">예</span>
+                  <span class="lang-zh">是</span>
+                </label>
+                <label>
+                  <input type="radio" name="Photographs" value="No" />
+                  <span class="lang-en">No</span>
+                  <span class="lang-ko">아니오</span>
+                  <span class="lang-zh">否</span>
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="photos_showing">
+                <span class="lang-en">If yes, showing what?</span>
+                <span class="lang-ko">있다면, 무엇이 찍혀 있나요?</span>
+                <span class="lang-zh">如有，主要内容是什么？</span>
+              </label>
+              <input
+                type="text"
+                id="photos_showing"
+                name="Photographs Showing"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="photos_date">
+              <span class="lang-en">Date Photographs Taken</span>
+              <span class="lang-ko">사진 촬영일</span>
+              <span class="lang-zh">照片拍摄日期</span>
+            </label>
+            <input type="text" id="photos_date" name="Photographs Date Taken" />
+          </div>
+
+          <div class="field">
+            <label for="incident_report">
+              <span class="lang-en">Incident Report (e.g., police report, please describe)</span>
+              <span class="lang-ko">사고 보고서(예: 경찰 보고서 등, 내용 설명)</span>
+              <span class="lang-zh">事故报告（例如警方报告等，请说明）</span>
+            </label>
+            <textarea id="incident_report" name="Incident Report"></textarea>
+          </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page-section" data-page="2">
+          <!-- 3. Your Insurance Information -->
+          <h2>
+            <span class="lang-en">Your Insurance Information</span>
+            <span class="lang-ko">본인 보험 정보</span>
+            <span class="lang-zh">本人保险信息</span>
+          </h2>
+
+          <div class="field">
+            <label for="your_liability_ins">
+              <span class="lang-en">Your Liability Insurance Company</span>
+              <span class="lang-ko">본인 책임보험 회사</span>
+              <span class="lang-zh">本人责任保险公司</span>
+            </label>
+            <input
+              type="text"
+              id="your_liability_ins"
+              name="Your Liability Insurance Co."
+            />
+          </div>
+
+          <div class="grid-3">
+            <div class="field">
+              <label for="your_adjuster">
+                <span class="lang-en">Adjuster’s Name</span>
+                <span class="lang-ko">담당 조사관 이름</span>
+                <span class="lang-zh">理赔员姓名</span>
+              </label>
+              <input
+                type="text"
+                id="your_adjuster"
+                name="Your Adjuster’s Name"
+              />
+            </div>
+            <div class="field">
+              <label for="your_policy">
+                <span class="lang-en">Policy/Claim No.</span>
+                <span class="lang-ko">폴리시/클레임 번호</span>
+                <span class="lang-zh">保单/索赔编号</span>
+              </label>
+              <input type="text" id="your_policy" name="Your Policy/Claim No." />
+            </div>
+            <div class="field">
+              <label for="medpay_amt">
+                <span class="lang-en">Medical Payment Amount</span>
+                <span class="lang-ko">의료비 지급 한도</span>
+                <span class="lang-zh">医疗支付额度</span>
+              </label>
+              <input type="text" id="medpay_amt" name="Medical Payment Amt." />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="your_ins_address">
+              <span class="lang-en">Insurance Company Address</span>
+              <span class="lang-ko">보험회사 주소</span>
+              <span class="lang-zh">保险公司地址</span>
+            </label>
+            <input
+              type="text"
+              id="your_ins_address"
+              name="Your Insurance Co. Address"
+            />
+          </div>
+
+          <div class="field">
+            <label for="your_ins_phone">
+              <span class="lang-en">Insurance Company Phone No.</span>
+              <span class="lang-ko">보험회사 전화번호</span>
+              <span class="lang-zh">保险公司电话</span>
+            </label>
+            <input
+              type="tel"
+              id="your_ins_phone"
+              name="Your Insurance Co. Phone No."
+            />
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="your_other_ins">
+                <span class="lang-en">Your Other Insurance Company</span>
+                <span class="lang-ko">기타 보험회사</span>
+                <span class="lang-zh">其他保险公司</span>
+              </label>
+              <input
+                type="text"
+                id="your_other_ins"
+                name="Your Other Insurance Co."
+              />
+            </div>
+            <div class="field">
+              <label for="your_other_policy">
+                <span class="lang-en">Policy No.</span>
+                <span class="lang-ko">폴리시 번호</span>
+                <span class="lang-zh">保单号</span>
+              </label>
+              <input
+                type="text"
+                id="your_other_policy"
+                name="Your Other Policy No."
+              />
+            </div>
+          </div>
+
+          <!-- 4. Defendant -->
+          <h2>
+            <span class="lang-en">Defendant</span>
+            <span class="lang-ko">상대방(피고) 정보</span>
+            <span class="lang-zh">对方（被告）信息</span>
+          </h2>
+
+          <div class="field">
+            <label for="defendant_name">
+              <span class="lang-en">Defendant Name(s)</span>
+              <span class="lang-ko">피고(상대방) 이름</span>
+              <span class="lang-zh">被告姓名</span>
+            </label>
+            <input type="text" id="defendant_name" name="Defendant Name(s)" />
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="defendant_address">
+                <span class="lang-en">Defendant Address</span>
+                <span class="lang-ko">피고 주소</span>
+                <span class="lang-zh">被告地址</span>
+              </label>
+              <input
+                type="text"
+                id="defendant_address"
+                name="Defendant Address"
+              />
+            </div>
+            <div class="field">
+              <label for="defendant_phone">
+                <span class="lang-en">Defendant Phone</span>
+                <span class="lang-ko">피고 전화번호</span>
+                <span class="lang-zh">被告电话</span>
+              </label>
+              <input
+                type="tel"
+                id="defendant_phone"
+                name="Defendant Phone"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="def_ins_company">
+              <span class="lang-en">Defendant’s Insurance Company</span>
+              <span class="lang-ko">피고 보험회사</span>
+              <span class="lang-zh">被告保险公司</span>
+            </label>
+            <input
+              type="text"
+              id="def_ins_company"
+              name="Defendant’s Insurance Company"
+            />
+          </div>
+
+          <div class="grid-3">
+            <div class="field">
+              <label for="def_adjuster">
+                <span class="lang-en">Adjuster’s Name</span>
+                <span class="lang-ko">담당 조사관 이름</span>
+                <span class="lang-zh">理赔员姓名</span>
+              </label>
+              <input
+                type="text"
+                id="def_adjuster"
+                name="Defendant Adjuster’s Name"
+              />
+            </div>
+            <div class="field">
+              <label for="def_policy">
+                <span class="lang-en">Policy/Claim No.</span>
+                <span class="lang-ko">폴리시/클레임 번호</span>
+                <span class="lang-zh">保单/索赔编号</span>
+              </label>
+              <input
+                type="text"
+                id="def_policy"
+                name="Defendant Policy/Claim No."
+              />
+            </div>
+            <div class="field">
+              <label for="def_ins_address">
+                <span class="lang-en">Insurance Company Address</span>
+                <span class="lang-ko">보험회사 주소</span>
+                <span class="lang-zh">保险公司地址</span>
+              </label>
+              <input
+                type="text"
+                id="def_ins_address"
+                name="Defendant Insurance Address"
+              />
+            </div>
+          </div>
+
+          <!-- 5. Employment for Past Ten Years -->
+          <h2>
+            <span class="lang-en">Employment for Past Ten Years</span>
+            <span class="lang-ko">최근 10년간 직업 이력</span>
+            <span class="lang-zh">过去十年工作经历</span>
+          </h2>
+
+          <h3>
+            <span class="lang-en">Present Employment</span>
+            <span class="lang-ko">현재 직장</span>
+            <span class="lang-zh">目前工作单位</span>
+          </h3>
+
+          <div class="field">
+            <label for="present_employer">
+              <span class="lang-en">Name & Address</span>
+              <span class="lang-ko">회사명 및 주소</span>
+              <span class="lang-zh">单位名称及地址</span>
+            </label>
+            <textarea
+              id="present_employer"
+              name="Present Employer Name & Address"
+            ></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="present_dates">
+                <span class="lang-en">Dates of Employment</span>
+                <span class="lang-ko">근무 기간</span>
+                <span class="lang-zh">工作起止日期</span>
+              </label>
+              <input
+                type="text"
+                id="present_dates"
+                name="Present Employment Dates"
+              />
+            </div>
+            <div class="field">
+              <label for="present_position">
+                <span class="lang-en">Position</span>
+                <span class="lang-ko">직위/직책</span>
+                <span class="lang-zh">职位</span>
+              </label>
+              <input
+                type="text"
+                id="present_position"
+                name="Present Position"
+              />
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="field">
+              <label for="present_wage">
+                <span class="lang-en">Wage/Salary</span>
+                <span class="lang-ko">급여</span>
+                <span class="lang-zh">工资/薪水</span>
+              </label>
+              <input
+                type="text"
+                id="present_wage"
+                name="Present Wage/Salary"
+              />
+            </div>
+            <div class="field">
+              <label for="present_supervisor">
+                <span class="lang-en">Supervisor</span>
+                <span class="lang-ko">상급자 이름</span>
+                <span class="lang-zh">主管姓名</span>
+              </label>
+              <input
+                type="text"
+                id="present_supervisor"
+                name="Present Supervisor"
+              />
+            </div>
+            <div class="field">
+              <label for="present_no_income_us">
+                <span class="lang-en">No income from US (explain)</span>
+                <span class="lang-ko">미국 내 소득 없음 (설명)</span>
+                <span class="lang-zh">无美国收入（请说明）</span>
+              </label>
+              <input
+                type="text"
+                id="present_no_income_us"
+                name="No income from US (explain)"
+              />
+            </div>
+          </div>
+
+          <h3>
+            <span class="lang-en">Past Employment (1)</span>
+            <span class="lang-ko">이전 직장 (1)</span>
+            <span class="lang-zh">过去工作单位 (1)</span>
+          </h3>
+
+          <div class="field">
+            <label for="past1_employer">
+              <span class="lang-en">Name & Address</span>
+              <span class="lang-ko">회사명 및 주소</span>
+              <span class="lang-zh">单位名称及地址</span>
+            </label>
+            <textarea
+              id="past1_employer"
+              name="Past (1) Employer Name & Address"
+            ></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="past1_dates">
+                <span class="lang-en">Dates</span>
+                <span class="lang-ko">근무 기간</span>
+                <span class="lang-zh">起止日期</span>
+              </label>
+              <input type="text" id="past1_dates" name="Past (1) Dates" />
+            </div>
+            <div class="field">
+              <label for="past1_position">
+                <span class="lang-en">Position</span>
+                <span class="lang-ko">직위/직책</span>
+                <span class="lang-zh">职位</span>
+              </label>
+              <input
+                type="text"
+                id="past1_position"
+                name="Past (1) Position"
+              />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="past1_wage">
+                <span class="lang-en">Wage/Salary</span>
+                <span class="lang-ko">급여</span>
+                <span class="lang-zh">工资/薪水</span>
+              </label>
+              <input
+                type="text"
+                id="past1_wage"
+                name="Past (1) Wage/Salary"
+              />
+            </div>
+            <div class="field">
+              <label for="past1_supervisor">
+                <span class="lang-en">Supervisor</span>
+                <span class="lang-ko">상급자 이름</span>
+                <span class="lang-zh">主管姓名</span>
+              </label>
+              <input
+                type="text"
+                id="past1_supervisor"
+                name="Past (1) Supervisor"
+              />
+            </div>
+          </div>
+
+          <h3>
+            <span class="lang-en">Past Employment (2)</span>
+            <span class="lang-ko">이전 직장 (2)</span>
+            <span class="lang-zh">过去工作单位 (2)</span>
+          </h3>
+
+          <div class="field">
+            <label for="past2_employer">
+              <span class="lang-en">Name & Address</span>
+              <span class="lang-ko">회사명 및 주소</span>
+              <span class="lang-zh">单位名称及地址</span>
+            </label>
+            <textarea
+              id="past2_employer"
+              name="Past (2) Employer Name & Address"
+            ></textarea>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="past2_dates">
+                <span class="lang-en">Dates</span>
+                <span class="lang-ko">근무 기간</span>
+                <span class="lang-zh">起止日期</span>
+              </label>
+              <input type="text" id="past2_dates" name="Past (2) Dates" />
+            </div>
+            <div class="field">
+              <label for="past2_position">
+                <span class="lang-en">Position</span>
+                <span class="lang-ko">직위/직책</span>
+                <span class="lang-zh">职位</span>
+              </label>
+              <input
+                type="text"
+                id="past2_position"
+                name="Past (2) Position"
+              />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="past2_wage">
+                <span class="lang-en">Wage/Salary</span>
+                <span class="lang-ko">급여</span>
+                <span class="lang-zh">工资/薪水</span>
+              </label>
+              <input
+                type="text"
+                id="past2_wage"
+                name="Past (2) Wage/Salary"
+              />
+            </div>
+            <div class="field">
+              <label for="past2_supervisor">
+                <span class="lang-en">Supervisor</span>
+                <span class="lang-ko">상급자 이름</span>
+                <span class="lang-zh">主管姓名</span>
+              </label>
+              <input
+                type="text"
+                id="past2_supervisor"
+                name="Past (2) Supervisor"
+              />
+            </div>
+          </div>
+
+          <!-- 6. Loss of Income -->
+          <h2>
+            <span class="lang-en">Loss of Income</span>
+            <span class="lang-ko">소득 손실</span>
+            <span class="lang-zh">收入损失</span>
+          </h2>
+
+          <table class="table-like">
+            <thead>
+              <tr>
+                <th>
+                  <span class="lang-en">Dates</span>
+                  <span class="lang-ko">기간</span>
+                  <span class="lang-zh">日期</span>
+                </th>
+                <th>
+                  <span class="lang-en">Salary or Hourly Wage</span>
+                  <span class="lang-ko">급여 또는 시급</span>
+                  <span class="lang-zh">工资或时薪</span>
+                </th>
+                <th>
+                  <span class="lang-en">Employer’s Name / Supervisor</span>
+                  <span class="lang-ko">고용주/상급자 이름</span>
+                  <span class="lang-zh">雇主/主管姓名</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="Loss Income Row 1 Dates" /></td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 1 Salary or Hourly Wage"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 1 Employer/Supervisor"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" name="Loss Income Row 2 Dates" /></td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 2 Salary or Hourly Wage"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 2 Employer/Supervisor"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" name="Loss Income Row 3 Dates" /></td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 3 Salary or Hourly Wage"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="Loss Income Row 3 Employer/Supervisor"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div class="page-section" data-page="3">
+          <!-- 7. Witnesses -->
+          <h2>
+            <span class="lang-en">Witnesses</span>
+            <span class="lang-ko">목격자</span>
+            <span class="lang-zh">目击证人</span>
+          </h2>
+
+          <div class="field">
+            <label for="witness1_name">
+              <span class="lang-en">Witness 1 Name & Address</span>
+              <span class="lang-ko">목격자 1 이름 및 주소</span>
+              <span class="lang-zh">证人1姓名及地址</span>
+            </label>
+            <textarea
+              id="witness1_name"
+              name="Witness 1 Name & Address"
+            ></textarea>
+          </div>
+          <div class="field">
+            <label for="witness1_phone">
+              <span class="lang-en">Witness 1 Phone</span>
+              <span class="lang-ko">목격자 1 전화번호</span>
+              <span class="lang-zh">证人1电话</span>
+            </label>
+            <input type="tel" id="witness1_phone" name="Witness 1 Phone" />
+          </div>
+
+          <div class="field">
+            <label for="witness2_name">
+              <span class="lang-en">Witness 2 Name & Address</span>
+              <span class="lang-ko">목격자 2 이름 및 주소</span>
+              <span class="lang-zh">证人2姓名及地址</span>
+            </label>
+            <textarea
+              id="witness2_name"
+              name="Witness 2 Name & Address"
+            ></textarea>
+          </div>
+          <div class="field">
+            <label for="witness2_phone">
+              <span class="lang-en">Witness 2 Phone</span>
+              <span class="lang-ko">목격자 2 전화번호</span>
+              <span class="lang-zh">证人2电话</span>
+            </label>
+            <input type="tel" id="witness2_phone" name="Witness 2 Phone" />
+          </div>
+
+          <!-- 8. Describe Your Injuries -->
+          <h2>
+            <span class="lang-en">Describe Your Injuries</span>
+            <span class="lang-ko">부상 내용</span>
+            <span class="lang-zh">伤情说明</span>
+          </h2>
+
+          <div class="field">
+            <label for="injuries_description">
+              <span class="lang-en">Injuries (please be specific)</span>
+              <span class="lang-ko">부상 부위 및 정도 (자세히)</span>
+              <span class="lang-zh">具体受伤部位及程度</span>
+            </label>
+            <textarea
+              id="injuries_description"
+              name="Describe Your Injuries"
+            ></textarea>
+          </div>
+
+          <!-- 9. Treatment for Injuries -->
+          <h2>
+            <span class="lang-en">Treatment for Injuries</span>
+            <span class="lang-ko">치료 내역</span>
+            <span class="lang-zh">伤后治疗</span>
+          </h2>
+
+          <table class="table-like">
+            <thead>
+              <tr>
+                <th>
+                  <span class="lang-en">Medical Provider’s Name</span>
+                  <span class="lang-ko">의료기관/의사 이름</span>
+                  <span class="lang-zh">医疗机构/医生姓名</span>
+                </th>
+                <th>
+                  <span class="lang-en">Address</span>
+                  <span class="lang-ko">주소</span>
+                  <span class="lang-zh">地址</span>
+                </th>
+                <th>
+                  <span class="lang-en">Dates</span>
+                  <span class="lang-ko">치료 기간</span>
+                  <span class="lang-zh">就诊日期</span>
+                </th>
+                <th>
+                  <span class="lang-en">Treatment Rendered</span>
+                  <span class="lang-ko">치료 내용</span>
+                  <span class="lang-zh">治疗内容</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input type="text" name="Treatment (1) Provider Name" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (1) Address" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (1) Dates" />
+                </td>
+                <td>
+                  <textarea
+                    name="Treatment (1) Rendered"
+                    rows="2"
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="text" name="Treatment (2) Provider Name" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (2) Address" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (2) Dates" />
+                </td>
+                <td>
+                  <textarea
+                    name="Treatment (2) Rendered"
+                    rows="2"
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="text" name="Treatment (3) Provider Name" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (3) Address" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (3) Dates" />
+                </td>
+                <td>
+                  <textarea
+                    name="Treatment (3) Rendered"
+                    rows="2"
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="text" name="Treatment (4) Provider Name" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (4) Address" />
+                </td>
+                <td>
+                  <input type="text" name="Treatment (4) Dates" />
+                </td>
+                <td>
+                  <textarea
+                    name="Treatment (4) Rendered"
+                    rows="2"
+                  ></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 10. Prior Medical History -->
+          <h2>
+            <span class="lang-en">Prior Medical History</span>
+            <span class="lang-ko">기존 병력</span>
+            <span class="lang-zh">既往病史</span>
+          </h2>
+
+          <h3>
+            <span class="lang-en">1. Prior Injuries</span>
+            <span class="lang-ko">1) 이전 부상 이력</span>
+            <span class="lang-zh">1）以往受伤情况</span>
+          </h3>
+
+          <table class="table-like">
+            <thead>
+              <tr>
+                <th>
+                  <span class="lang-en">Date</span>
+                  <span class="lang-ko">일자</span>
+                  <span class="lang-zh">日期</span>
+                </th>
+                <th>
+                  <span class="lang-en">Injuries</span>
+                  <span class="lang-ko">부상 내용</span>
+                  <span class="lang-zh">伤情</span>
+                </th>
+                <th>
+                  <span class="lang-en">Treating Doctors</span>
+                  <span class="lang-ko">치료 의사</span>
+                  <span class="lang-zh">主治医生</span>
+                </th>
+                <th>
+                  <span class="lang-en">Lawsuit/Claim?</span>
+                  <span class="lang-ko">소송/클레임 여부</span>
+                  <span class="lang-zh">是否提起诉讼/索赔</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="Prior Injury (1) Date" /></td>
+                <td><textarea name="Prior Injury (1) Injuries"></textarea></td>
+                <td><textarea name="Prior Injury (1) Treating Doctors"></textarea></td>
+                <td><input type="text" name="Prior Injury (1) Lawsuit/Claim" /></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="Prior Injury (2) Date" /></td>
+                <td><textarea name="Prior Injury (2) Injuries"></textarea></td>
+                <td><textarea name="Prior Injury (2) Treating Doctors"></textarea></td>
+                <td><input type="text" name="Prior Injury (2) Lawsuit/Claim" /></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="field">
+            <label for="prior_note">
+              <span class="lang-en">Additional details regarding prior injuries (if any)</span>
+              <span class="lang-ko">이전 부상에 대한 추가 설명 (있다면)</span>
+              <span class="lang-zh">以往受伤的补充说明（如有）</span>
+            </label>
+            <textarea id="prior_note" name="Prior Injuries Additional Note"></textarea>
+          </div>
+
+          <h3>
+            <span class="lang-en">2. Family Doctor</span>
+            <span class="lang-ko">2) 주치의 정보</span>
+            <span class="lang-zh">2）家庭医生信息</span>
+          </h3>
+
+          <div class="field">
+            <label for="family_doctor">
+              <span class="lang-en">Family Doctor Name</span>
+              <span class="lang-ko">주치의 이름</span>
+              <span class="lang-zh">家庭医生姓名</span>
+            </label>
+            <input
+              type="text"
+              id="family_doctor"
+              name="Family Doctor Name"
+            />
+          </div>
+          <div class="field">
+            <label for="family_doctor_address">
+              <span class="lang-en">Family Doctor Address</span>
+              <span class="lang-ko">주치의 주소</span>
+              <span class="lang-zh">家庭医生地址</span>
+            </label>
+            <input
+              type="text"
+              id="family_doctor_address"
+              name="Family Doctor Address"
+            />
+          </div>
+
+          <h3>
+            <span class="lang-en">3. Other Treating Doctors</span>
+            <span class="lang-ko">3) 기타 진료 의사</span>
+            <span class="lang-zh">3）其他主治医生</span>
+          </h3>
+
+          <div class="field">
+            <label for="other_doc_a">
+              (a)
+            </label>
+            <textarea id="other_doc_a" name="Other Treating Doctor (a)"></textarea>
+          </div>
+          <div class="field">
+            <label for="other_doc_b">
+              (b)
+            </label>
+            <textarea id="other_doc_b" name="Other Treating Doctor (b)"></textarea>
+          </div>
+
+          <!-- 제출 / 인쇄 버튼 -->
+          <div class="buttons no-print">
+            <button
+              type="button"
+              class="secondary"
+              onclick="window.print()"
+            >
+              🖨️
+              <span class="lang-en">Print / Save as PDF</span>
+              <span class="lang-ko">인쇄 / PDF 저장</span>
+              <span class="lang-zh">打印 / 另存为 PDF</span>
+            </button>
+            <button type="submit">
+              ✉️
+              <span class="lang-en">Submit by Email</span>
+              <span class="lang-ko">이메일로 제출</span>
+              <span class="lang-zh">通过电子邮件提交</span>
+            </button>
+          </div>
+
+          <p class="note no-print">
+            <span class="lang-en">
+              Note: After submission, this form will be emailed directly to the law office.
+            </span>
+            <span class="lang-ko">
+              안내: 제출 버튼을 누르시면, 작성하신 내용이 바로 로펌 이메일로 전송됩니다.
+            </span>
+            <span class="lang-zh">
+              说明：点击“提交”后，本表内容将直接发送到本所邮箱。
+            </span>
+          </p>
+        </div>
+
+        <!-- 페이지 네비게이션 (공통) -->
+        <div class="page-nav no-print">
+          <div>
+            <button
+              type="button"
+              class="secondary"
+              id="prevPageBtn"
+            >
+              ←
+              <span class="lang-en">Previous Page</span>
+              <span class="lang-ko">이전 페이지</span>
+              <span class="lang-zh">上一页</span>
+            </button>
+          </div>
+          <div class="page-indicator" id="pageIndicator">
+            <!-- JS에서 채움 -->
+          </div>
+          <div>
+            <button
+              type="button"
+              class="secondary"
+              id="nextPageBtn"
+            >
+              <span class="lang-en">Next Page</span>
+              <span class="lang-ko">다음 페이지</span>
+              <span class="lang-zh">下一页</span>
+              →
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // 페이지 제어
+      var currentPage = 1;
+      var totalPages = 3;
+      var sections = document.querySelectorAll(".page-section");
+      var prevBtn = document.getElementById("prevPageBtn");
+      var nextBtn = document.getElementById("nextPageBtn");
+      var indicator = document.getElementById("pageIndicator");
+
+      function updatePage() {
+        sections.forEach(function (sec) {
+          var p = parseInt(sec.getAttribute("data-page"), 10);
+          sec.classList.toggle("active", p === currentPage);
+        });
+
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+
+        var lang = document.documentElement.getAttribute("data-lang") || "en";
+        if (lang === "ko") {
+          indicator.textContent = "페이지 " + currentPage + " / " + totalPages;
+        } else if (lang === "zh") {
+          indicator.textContent = "第 " + currentPage + " 页 / 共 " + totalPages + " 页";
+        } else {
+          indicator.textContent = "Page " + currentPage + " of " + totalPages;
+        }
+      }
+
+      prevBtn.addEventListener("click", function () {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          updatePage();
+        }
+      });
+
+      nextBtn.addEventListener("click", function () {
+        if (currentPage < totalPages) {
+          currentPage += 1;
+          updatePage();
+        }
+      });
+
+      // 언어 토글
+      var langButtons = document.querySelectorAll("[data-lang-select]");
+
+      function setLang(lang) {
+        document.documentElement.setAttribute("data-lang", lang);
+        langButtons.forEach(function (btn) {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang-select") === lang
+          );
+        });
+        updatePage(); // 페이지 표시 문구도 언어에 맞게 업데이트
+      }
+
+      langButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var lang = btn.getAttribute("data-lang-select");
+          setLang(lang);
+        });
+      });
+
+      // 초기 상태
+      updatePage();
+      setLang("en");
+    })();
+  </script>
+</body>
+</html>
